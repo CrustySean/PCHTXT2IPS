@@ -23,10 +23,11 @@ int main(int argc, char **argv) {
     auto file = std::ofstream(out.collections.front().buildId + ".ips");
 
     /* Write ips file. */
-    pchtxt::PatchCollection pc;
-    pc.buildId = out.collections.front().buildId;
-    pc.targetType = pchtxt::TargetType::NSO;
-    pc.patches = out.collections.front().patches;
+    pchtxt::PatchCollection pc {
+        out.collections.front().buildId,
+        out.collections.front().targetType,
+        out.collections.front().patches
+    };
     pchtxt::writeIps(pc, file);
 
     return 0;
